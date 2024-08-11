@@ -1,25 +1,27 @@
-import React from 'react'
-import './assets/css/style.css'
-import { motion, useScroll } from 'framer-motion'
+import React from 'react';
+import './assets/css/style.css';
+import { motion, useScroll } from 'framer-motion';
+import { fadeInVariants } from './assets/js/variants';
 
 const App = () => {
   const parent = {
-    hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.25 } }
-  }
-  
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.25 } }
+  };
+
   const child = {
-    hidden: { opacity: 0 }, show: { opacity: 1 }
-  }
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+  };
 
   const { scrollYProgress } = useScroll();
 
-
   return (
     <>
-      <motion.div className="position-fixed w-100" style={{ height: '5px',backgroundColor: 'white', scaleX: scrollYProgress, transformOrigin: 'left', zIndex: 9999}}></motion.div>
-      <div class="container py-5">
+      <motion.div className="position-fixed w-100" style={{ height: '5px', backgroundColor: 'white', scaleX: scrollYProgress, transformOrigin: 'left', zIndex: 9999 }}></motion.div>
+      <div className="container py-5">
         <motion.div variants={parent} initial="hidden" animate="show">
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
             <div className="col">
               <motion.div variants={child} className="bg-primary p-5 rounded d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
                 <motion.div className="rounded bg-info" style={{ height: '150px', width: '150px' }} initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25, ease: 'easeIn' }}></motion.div>
@@ -38,21 +40,35 @@ const App = () => {
             </div>
             <div className="col">
               <motion.div variants={child} className="bg-primary p-5 rounded d-flex justify-content-center align-items-center gap-3">
-                <motion.div className="bg-danger rounded d-flex justify-content-center align-items-center" style={{ height: '150px', width: '150px' }} drag dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }} dragTransition={{ bounceStiffness: 600, bounceDamping: 100 }}>Drag Me</motion.div>
+                <motion.div className="bg-info rounded d-flex justify-content-center align-items-center" style={{ height: '150px', width: '150px' }} drag dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }} dragTransition={{ bounceStiffness: 600, bounceDamping: 100 }}>Drag Me</motion.div>
               </motion.div>
             </div>
             <div className="col">
-            <motion.div variants={child} className="bg-primary p-5 rounded d-flex justify-content-center align-items-center gap-3">
-              <motion.div className="div" style={{ height: '150px', width: '150px', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-                <motion.div className='w-100 h-100' style={{ transformOrigin: 'bottom', scaleY: scrollYProgress, backgroundColor: 'rgba(255, 255, 255, 0.5)'}}/>
+              <motion.div variants={child} className="bg-primary p-5 rounded d-flex justify-content-center align-items-center gap-3">
+                <motion.div className="div" style={{ height: '150px', width: '150px', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                  <motion.div className='w-100 h-100' style={{ transformOrigin: 'bottom', scaleY: scrollYProgress, backgroundColor: 'rgba(255, 255, 255, 0.5)' }} />
+                </motion.div>
               </motion.div>
-            </motion.div>
             </div>
           </div>
         </motion.div>
+        <div className="row row-cols-1 row-cols-md-3 mt-5">
+          <div className="col">
+            <motion.div className="alert alert-primary" variants={fadeInVariants} initial="initial" whileInView="animate">Hi</motion.div>
+          </div>
+          <div className="col">
+            <motion.div className="alert alert-primary" variants={fadeInVariants} initial="initial" whileInView="animate">Hi</motion.div>
+          </div>
+          <div className="col">
+            <motion.div className="alert alert-primary" variants={fadeInVariants} initial="initial" whileInView="animate">Hi</motion.div>
+          </div>
+          <div className="col">
+            <motion.div className="alert alert-primary" variants={fadeInVariants} initial="initial" whileInView="animate">Hi</motion.div>
+          </div>
+        </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
